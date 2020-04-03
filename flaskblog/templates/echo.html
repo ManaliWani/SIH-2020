@@ -1,0 +1,25 @@
+ {% extends "layout.html" %}
+{% block content %}
+<style>
+
+</style>
+
+<form action="{{ url_for('test') }}" method="post">
+     <div class="controls">
+  {{ form.test(cols="100",rows="20") }}
+      
+</div>
+
+
+            <input class="btn btn-info" type="submit" value="Submit" onclick="myalert()">
+            <script type="text/javascript">
+            function myalert(){
+            alert("Successfully edited and created Prescription");}
+            </script>
+               
+
+</form>
+
+
+
+{% endblock content %}

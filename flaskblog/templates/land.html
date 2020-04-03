@@ -1,0 +1,129 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
+
+<br>
+<br>
+<br>
+
+
+
+<div class="row">
+
+  <!-- Grid column -->
+  <div class="col-lg-4 col-md-12">
+
+    <!--Card-->
+    <div class="card">
+
+      <!--Card image-->
+      <div class="view">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQn7F45bldX-l0gNvqTueusxXJCyohfEsBrnO9LMsSz9DQalK1_iw&s" class="card-img-top"
+          alt="photo">
+        <a href="#">
+          <div class="mask rgba-white-slight"></div>
+        </a>
+      </div>
+
+      <!--Card content-->
+      <div class="card-body">
+        <!--Title-->
+        <h4 class="card-title">Voice Prescription</h4>
+        <!--Text-->
+        <p class="card-text">Click Button to Speak Prescription</p>
+        
+        <a href="{{ url_for('speak') }}" ><button type="button" class="btn btn-outline-info" onclick="myalert()">
+Speak
+</button></a>
+ <script type="text/javascript">
+            function myalert(){
+            alert("Please dictate prescription");}
+            </script>
+      </div>
+
+    </div>
+    <!--/.Card-->
+
+  </div>
+  <!-- Grid column -->
+
+  <!-- Grid column -->
+  <div class="col-lg-4 col-md-6">
+
+    <!--Card-->
+    <div class="card">
+
+      <!--Card content-->
+      <div class="card-body elegant-color white-text">
+        <!--Title-->
+        <h4 class="card-title">Guidelines</h4>
+        <!--Text-->
+        <p class="card-text white-text">
+        <ul>
+        <li> Start speaking the prescription after 
+        clicking on the <b>Speak</b> Button. </li>
+        <br>
+        <li> It should contain words like <b>Name</b>, <b>Symptoms</b>, <b>Diagnosis</b>,
+         <b>Prescription</b>, <b>Advice</b></li>
+        <br>
+        <li> Click on the <b>View</b> button to view patient's history. </li>
+       </p>
+     
+      </div>
+
+    </div>
+    <!--/.Card-->
+
+  </div>
+  <!-- Grid column -->
+
+  <!-- Grid column -->
+  <div class="col-lg-4 col-md-6">
+
+    <!--Panel-->
+    <div class="card">
+      <h3 class="card-header light-blue lighten-1 white-text text-uppercase font-weight-bold text-center py-5">Patients List</h3>
+      <div class="card-body">
+        <ul class="list-group">
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+           Mr John
+            <span class="btn btn-outline-primary btn-sm">View</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+           Miss Saloni
+            <span class="btn btn-outline-primary btn-sm">View</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            Mrs. Fernandes
+            <span class="btn btn-outline-primary btn-sm">View</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            Mr. Joshi
+            <span class="btn btn-outline-primary btn-sm">View</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+           Deshmukh
+            <span class="btn btn-outline-primary btn-sm">View</span>
+          </li>
+        </ul>
+        <p class="text-small text-muted mb-0 pt-3">* usernames of patients</p>
+      </div>
+    </div>
+    <!--/.Panel-->
+
+  </div>
+  <!-- Grid column -->
+
+</div>
+<!-- Grid row -->
+</div>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+ 
+{% endblock content %}
+
+

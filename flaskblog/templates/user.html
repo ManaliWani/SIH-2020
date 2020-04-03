@@ -1,0 +1,22 @@
+{% extends "admin.html" %}
+{% block admin %}
+ <table class=table  style="width:100%">
+    <tr >
+      <th>ID</th>
+      <th>Username</th> 
+      <th>Email</th>
+      
+    
+
+  {% for user in users %} 
+ 
+  <tr>
+      <td>{{user.id}}</td>
+      <td>{{user.username}}</td>
+      <td>{{user.email}}</td>
+    </tr>
+  {%endfor%}
+  </table>
+
+<a class="btn btn-outline-info" href="{{ url_for('register') }}">Add User</a>
+{% endblock admin %}

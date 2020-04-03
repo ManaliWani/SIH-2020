@@ -1,0 +1,58 @@
+{% extends "layout.html" %}
+{% block content %}
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">	
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {font-family: Arial;}
+
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab */
+.tab a {
+  background-color: inherit;
+  color: #18335e;
+  float: left;
+  border: 10px;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab a:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab a.active {
+  background-color: #ccc;
+}
+
+
+
+</style>
+</head>
+<body>
+
+
+
+<div class="tab">
+  <a href="{{ url_for('admin') }}" class="tablinks">Custom</a> 
+  <a href="{{ url_for('user') }}" class="tablinks">User</a>
+  
+</div>
+
+{% block admin %}{% endblock admin %}
+
+
+
+    
+{% endblock content %}

@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+{% block content %}
+
+
+
+ 
+  
+  
+</td>
+
+
+
+<form action="{{ url_for('sendToPatient') }}" method="post">
+      <input class="btn btn-info" type="submit" value="Send to Patient" onclick="myalert()">
+      
+      <script type="text/javascript">
+            function myalert(){
+            alert("PDF successfully sent to Patient");}
+            </script>
+            
+      <input class="btn btn-info" type="submit" value="Translate">
+</form>
+      
+
+
+{% endblock content %}

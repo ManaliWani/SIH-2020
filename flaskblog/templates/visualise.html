@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link
+    href="http://cdn.pydata.org/bokeh/release/bokeh-1.0.4.min.css"
+    rel="stylesheet" type="text/css">
+    <link
+    href="http://cdn.pydata.org/bokeh/release/bokeh-widgets-1.0.4.min.css"
+    rel="stylesheet" type="text/css">
+    <link
+    href="https://cdn.pydata.org/bokeh/release/bokeh-tables-1.0.4.min.css"
+    rel="stylesheet" type="text/css">
+
+
+    <script src="http://cdn.pydata.org/bokeh/release/bokeh-1.0.4.min.js"></script>
+    <script src="http://cdn.pydata.org/bokeh/release/bokeh-widgets-1.0.4.min.js"></script>
+    <script src="https://cdn.pydata.org/bokeh/release/bokeh-tables-1.0.4.min.js"></script>
+
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    {% if title %}
+        <title>Project - {{ title }}</title>
+    {% else %}
+        <title>Project</title>
+    {% endif %}
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+    <style type="text/css">
+        
+    .container {
+    display: flex;
+    align-items: flex-start;
+}
+
+#sidebar {
+    margin-top: -25px;
+    min-width: 250px;
+    max-width: 250px;
+    min-height: 100vh;
+}
+
+#sidebar.active {
+    margin-left: -250px;
+}
+
+a[data-toggle="collapse"] {
+    position: relative;
+}
+
+.dropdown-toggle::after {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+}
+
+@media (max-width: 768px) {
+    #sidebar {
+        margin-left: -250px;
+    }
+    #sidebar.active {
+        margin-left: 0;
+    }
+}
+
+@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #fafafa;
+}
+
+p {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1em;
+    font-weight: 300;
+    line-height: 1.7em;
+    color: #999;
+}
+
+a, a:hover, a:focus {
+    color: inherit;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+#sidebar {
+    /* don't forget to add all the previously mentioned styles here too */
+    background: #1d5766;
+    color: #fff;
+    transition: all 0.3s;
+    
+}
+
+#sidebar .sidebar-header {
+
+    padding: 20px;
+    background: #bac2c4;
+}
+
+#sidebar ul.components {
+    padding: 20px 0;
+    border-bottom: 1px solid #47748b;
+
+}
+
+#sidebar ul p {
+    color: #afb3b5;
+    padding: 10px;
+}
+
+#sidebar ul li a {
+    padding: 10px;
+    font-size: 1.1em;
+    display: block;
+
+}
+#sidebar ul li a:hover {
+    color: #7386D5;
+    background: #fff;
+}
+
+#sidebar ul li.active > a, a[aria-expanded="true"] {
+    color: #1d5766;
+    background: #bac2c4;
+
+}
+ul ul a {
+    font-size: 0.9em !important;
+    text-align: center;
+    padding-left: 30px !important;
+    background: #1d5766;
+    padding-bottom: 10px;
+}
+
+    </style>
+
+</head>
+
+
+
+<body>
+    <div id="content">
+    <header class="site-header">
+      <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+       
+        <button type="button" id="sidebarCollapse" class="btn btn-info">
+               <!-- <i class="fas fa-align-left"></i>-->
+                <span>☰</span>
+            </button>
+        <div class="container">
+            
+          
+
+          <a class="navbar-brand mr-4" href="/">Project</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarToggle">
+            <div class="navbar-nav mr-auto">
+              
+              <a class="navbar-brand mr-4" href="{{ url_for('admin') }}">Administration</a>
+            </div>
+            <!-- Navbar Right Side -->
+            <div class="navbar-nav">
+              {% if current_user.is_authenticated %}
+                <a class="nav-item nav-link" href="{{ url_for('new_post') }}">New Project</a>
+                <a class="nav-item nav-link" href="{{ url_for('account') }}">Account</a>
+                <a class="nav-item nav-link" href="{{ url_for('logout') }}">Logout</a>
+              {% else %}
+                <a class="nav-item nav-link" href="{{ url_for('login') }}">Login</a>
+                <a class="nav-item nav-link" href="{{ url_for('register') }}">Register</a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main role="main" class="container">
+      <div class="row">
+        <div class="col-md-8">
+          {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+              {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">
+                  {{ message }}
+                </div>
+              {% endfor %}
+            {% endif %}
+          {% endwith %}
+          
+        </div>
+       <!-- <div class="col-md-4">
+          <div class="content-section">
+            <h3>Our Sidebar</h3>
+            <p class='text-muted'>You can put any information here you'd like.
+              <ul class="list-group">
+                <li class="list-group-item list-group-item-light">Latest Posts</li>
+                <li class="list-group-item list-group-item-light">Announcements</li>
+                <li class="list-group-item list-group-item-light">Calendars</li>
+                <li class="list-group-item list-group-item-light">etc</li>
+              </ul>
+            </p>
+          </div>
+        </div>-->
+      </div>
+    </main>
+
+
+
+
+    
+</div>
+
+    <!-- Sidebar -->
+    <div class="row">
+        <div class="col-sm">
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <h3>Visualization bar</h3>
+        </div>
+
+        <ul class="list-unstyled components">
+
+            
+            <li class="active">
+                <script>
+                    var dictionary= { dictionary }
+                    var name= { name }
+                    //var headers1= {{ headers1 |safe }}
+                    
+                </script>
+                <a href="#TableSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-table"></i>&nbsp;&nbsp;{{name}}</a>
+                <ul class="collapse list-unstyled" id="TableSubmenu">
+                    
+                    {% for item1 in dictionary %}
+                        <li>
+                            {%if item1[1]=="num"%}
+
+                            
+                                <hr > &nbsp;&nbsp; &nbsp; <i class='fas fa-sort-numeric-down'></i>&nbsp;&nbsp;{{item1[0]}} </hr>    
+                            {%else%}
+                                <hr > &nbsp;&nbsp;&nbsp;  <i class='fas fa-sort-alpha-down'></i>&nbsp;&nbsp; {{item1[0]}}</hr>
+                            {%endif%}   
+                            
+                        </li>
+                    {% endfor %}
+                    
+                </ul>
+            </li>
+            <li class="active">
+                <a href="#SimpleSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" ><i class="fa fa-bar-chart" aria-hidden="true"></i>&nbsp;&nbsp;Simple Visualizations</a>
+                <ul class="collapse list-unstyled" id="SimpleSubmenu">
+                    <li>
+                        <a href="#">Bar Graph</a>
+                    </li>
+                    <li>
+                        <a href="#">Pie Chart</a>
+                    </li>
+                    <li>
+                        
+
+                        <p><a href="{{url_for('histogram',post_id=post_id )}}" target="iframe_a">Histogram</a></p>
+                        <!--<a href="{{url_for('histogram',post_id=post_id )}}">Histogram</a>-->
+                    </li>
+                    <li>
+                        <a href="#">Line Graph</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="active">
+                <a href="#CustomSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-area-chart"></i>&nbsp;&nbsp;Custom Visualizations</a>
+                <ul class="collapse list-unstyled" id="CustomSubmenu">
+                    
+                    {%for cust in custom%}
+                    <li>
+     
+                        <a href="{{url_for('histogram',post_id=post_id )}}">{{cust.title}}</a>
+                    </li>
+                    {%endfor%}
+                    
+                </ul>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+    <!--
+    {% block content1 %}{% endblock %}
+    -->
+
+   <div class="col-sm">
+    {% with name="iframe_a" %}     
+
+
+       <iframe height="500px" width="500px"  name="iframe_a"></iframe>
+    {% endwith %}
+
+</div>
+  <!--  
+    <div id="myplot"></div>
+
+   <script>
+  fetch('/post/<int:post_id>/visualise/histogram')
+    .then(function(response) { console.log("hello");return response.json(); })
+    .then(function(item) { Bokeh.embed.embed_item(item); })
+  </script>
+   -->
+<div class="col-sm">
+      One of three columns
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+    $('#sidebarCollapse').on('click', function () {
+        $('#sidebar').toggleClass('active');
+    });
+
+});
+</script>
+ <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+{% extends "admin.html" %}
+
+{% block admin %}
+  
+     <table class=table  style="width:100%">
+    <tr >
+      <th >ID</th>
+      <th>Name</th> 
+      <th>Description</th>
+      <th>Number of Parameters</th>
+      <th>Name of Parameters</th>
+      
+    </tr>
+    
+  {% for cust in custom %} 
+  
+
+
+  <tr>
+      <td>{{cust.id}}</td>
+      <td>{{ cust.title }}</td>
+      <td>{{cust.content}}</td>
+      <td>{{cust.no_param}}</td>
+      <td>{{cust.name_param}}</td>
+      
+  </tr>
+  {%endfor%}
+  </table>
+  <a class="btn btn-outline-info" href="{{ url_for('custom') }}">Add Visualisation</a>
+
+   
+{% endblock admin %}
